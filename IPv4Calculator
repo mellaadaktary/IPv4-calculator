@@ -1,0 +1,24 @@
+#!/bin/bash
+
+
+#This script is going to calculate IPv4 addresses
+# it will consist of finding first host, last host, broadcast ID, network ID.
+# subnet mask 
+
+#check if they have bc installed if not return please isntall bc and tell them the command
+
+#is awk downloaded?
+
+stringwithDots="10.30.4.19"
+spacedString=${stringwithDots//./ }
+
+ipaddress=( $spacedString )
+
+for i in ${ipaddress[@]}; do
+	echo "$i"
+	singleDEC=$(printf '%08d\n' $(echo "obase=2;${i}" | bc -l))
+	echo "$singleDEC"
+done
+
+
+
