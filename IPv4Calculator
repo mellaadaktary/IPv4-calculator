@@ -9,10 +9,18 @@
 
 #is awk downloaded?
 
-stringwithDots="10.30.4.19"
-spacedString=${stringwithDots//./ }
+stringwithDotslash="10.30.4.19/18"
 
-ipaddress=( $spacedString )
+spacedString=${stringwithDotslash//./ }
+#removed slash from subnet not array
+RemovedSlash=${spacedString//// }
+# array now
+ipaddress=( $RemovedSlash )
+subnetmaskslash=${ipaddress[-1]}
+
+unset 'ipaddress[-1]'
+echo "${subnetmaskslash[@]}"
+echo "${ipaddress[@]}"
 
 for i in ${ipaddress[@]}; do
 	echo "$i"
