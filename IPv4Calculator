@@ -26,7 +26,7 @@ example = 10.20.30.40/20"
 fi
 
 
-zerosubnet="00000000000000000000000000000000"
+zerosubnet=""
 
 
 stringwithDotslash="$bruh"
@@ -43,13 +43,18 @@ echo "${subnetmaskslash}"
 echo "${ipaddress[@]}"
 
 numberofZeros=$(( 32-$subnetmaskslash ))
+#how come this dosent work
 #subnetmask="^([1]){${subnetmaskslash}}([0]){${numberofZeros}}$"
-#echo "$subnetmask"
 
 
-#not working yet
-for i in {1..${subnetmaskslash}}; do
-	echo "$i"
+#making the 1 portions
+for ((i = 1 ; i <= $subnetmaskslash ; i++)); do
+	zerosubnet+="1"
+done
+
+#add the zeros to make it 32 bit
+for ((i = 1 ; i <= numberofZeros ; i++)); do
+	zerosubnet+="0"
 done
 
 
