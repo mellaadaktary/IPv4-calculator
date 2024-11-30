@@ -8,6 +8,8 @@
 #check if they have bc installed if not return please isntall bc and tell them the command
 
 #is awk downloaded?
+
+
 bruh=( $1 )
 if [[ ! -n $1 ]]; then
 	echo "your argument passed is not a string"
@@ -23,6 +25,10 @@ example = 10.20.30.40/20"
 	exit 1
 fi
 
+
+zerosubnet="00000000000000000000000000000000"
+
+
 stringwithDotslash="$bruh"
 
 spacedString=${stringwithDotslash//./ }
@@ -33,8 +39,19 @@ ipaddress=( $RemovedSlash )
 subnetmaskslash=${ipaddress[-1]}
 
 unset 'ipaddress[-1]'
-echo "${subnetmaskslash[@]}"
+echo "${subnetmaskslash}"
 echo "${ipaddress[@]}"
+
+numberofZeros=$(( 32-$subnetmaskslash ))
+#subnetmask="^([1]){${subnetmaskslash}}([0]){${numberofZeros}}$"
+#echo "$subnetmask"
+
+
+#not working yet
+for i in {1..${subnetmaskslash}}; do
+	echo "$i"
+done
+
 
 for i in ${ipaddress[@]}; do
 	echo "$i"
