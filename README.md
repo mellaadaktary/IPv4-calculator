@@ -1,8 +1,21 @@
 
 
-# IPv4 subnetter
-This project is a calculator for IPv4 not sure how much its going to do so far but its something 
+# IPv4 subnetter unfinished
+This project is a calculator for IPv4, This script takes your IPv4 input and output a binary form for both the IP address and CIDR. 
 
+for example `10.20.30.40/18` anything else that is not in this format will be rejected
+
+# How to use:
+
+This script is very simple to run, simply type it and give your IPv4 address with CIDR notation.
+
+```bash
+./IPv4-calculator 10.20.30.40/24
+```
+
+this will return `10.20.30.40` in binary and also return `/24` in binary also
+
+Thank you for your time, This script is not finished right now and will be done later once i get more time.
 # References
 
 1. https://www.networkworld.com/article/971677/converting-numbers-on-linux-among-decimal-hexadecimal-octal-and-binary.html
