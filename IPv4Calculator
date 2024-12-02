@@ -39,8 +39,8 @@ ipaddress=( $RemovedSlash )
 subnetmaskslash=${ipaddress[-1]}
 
 unset 'ipaddress[-1]'
-echo "${subnetmaskslash}"
-echo "${ipaddress[@]}"
+#echo "${subnetmaskslash}"
+#echo "${ipaddress[@]}"
 
 numberofZeros=$(( 32-$subnetmaskslash ))
 #how come this dosent work
@@ -57,12 +57,15 @@ for ((i = 1 ; i <= numberofZeros ; i++)); do
 	zerosubnet+="0"
 done
 
-
+BinaryIP=""
+spacedSubnet=$(echo "$zerosubnet" | sed 's/.\{8\}/&./g')
+removelastdot=$(echo "$spacedSubnet" | sed 's/.$//')
 for i in ${ipaddress[@]}; do
-	echo "$i"
 	singleDEC=$(printf '%08d\n' $(echo "obase=2;${i}" | bc -l))
-	echo "$singleDEC"
+	BinaryIP+="$singleDEC"
 done
 
-
-
+spacedIp=$(echo "$BinaryIP" | sed 's/.\{8\}/&./g')
+removedIPdot=$(echo "$spacedIp" | sed 's/.$//')
+echo "Your IPv4 address in binary is: $removedIPdot"
+echo "Your subnet mask in binary is: $removelastdot"
